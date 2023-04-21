@@ -66,7 +66,7 @@ const displayEdit = (primary_id) => {
             primary_id: primary_id
         },
         success: function (data) {
-            $(".modal-body").html(data);
+            $("#editBody").html(data);
         }
     });
 }
