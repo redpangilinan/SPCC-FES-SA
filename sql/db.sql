@@ -29,7 +29,7 @@ CREATE TABLE
     tb_questions (
         question_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         category_id INT UNSIGNED NOT NULL,
-        question_text VARCHAR(255) NOT NULL,
+        question VARCHAR(255) NOT NULL,
         FOREIGN KEY (category_id) REFERENCES tb_categories(category_id)
     );
 
