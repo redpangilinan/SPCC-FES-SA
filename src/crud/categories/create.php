@@ -14,7 +14,7 @@ if ($total_weight + $weight > 100) {
     echo "exceed_weight";
 } else {
     // Insert the new category
-    $stmt = $conn->prepare("INSERT INTO tb_categories VALUES (null, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO tb_categories (category, weight) VALUES (?, ?)");
     if ($stmt->execute([$category, $weight])) {
         echo "success";
     } else {
