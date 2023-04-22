@@ -8,8 +8,8 @@ INSERT INTO
     )
 VALUES (
         'admin',
-        'admin@gmail.com',
+        'main.admin@gmail.com',
         '$2y$10$2a6suV9Wa9TtmZJW6RAKjOVlFKybXxz.eARFqMCASyZket9HYP6Hi',
-        'Admin',
-        'Main'
+        'ADMIN',
+        'MAIN'
     );
