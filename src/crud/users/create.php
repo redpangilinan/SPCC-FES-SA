@@ -6,7 +6,7 @@ $user_type = $_POST['user_type'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
-$access_code = $_POST['access_code'];
+$activation_code = $_POST['activation_code'];
 $verification_code = $_POST['verification_code'];
 
 // Extract first and last name from email
@@ -20,13 +20,13 @@ $valid = false;
 if ($user_type == "student") {
     $valid = true;
 } else {
-    $stmt = $conn->prepare('SELECT access_code FROM tb_access_code WHERE access_name = ?');
+    $stmt = $conn->prepare('SELECT activation_code FROM tb_activation_codes WHERE activation_type = ?');
     $stmt->execute([$user_type]);
-    $confirm_access_code = $stmt->fetchColumn();
-    if ($access_code == $confirm_access_code) {
+    $confirm_activation_code = $stmt->fetchColumn();
+    if ($activation_code == $confirm_activation_code) {
         $valid = true;
     } else {
-        echo "invalid_access_code";
+        echo "invalid_activation_code";
     }
 }
 

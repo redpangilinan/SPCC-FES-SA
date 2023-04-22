@@ -60,8 +60,8 @@ if (!isset($_GET['email']) && !isset($_GET['code'])) {
                         </select>
                     </div>
                     <div class="w-100 ms-2 d-none" id="accessCodeLayer">
-                        <label for="access_code" class="form-label">Access Code</label>
-                        <input type="password" class="form-control" name="access_code" id="access_code" placeholder="Access Code">
+                        <label for="activation_code" class="form-label">Activation Code</label>
+                        <input type="password" class="form-control" name="activation_code" id="activation_code" placeholder="Access Code">
                     </div>
                 </div>
                 <button type="submit" class="add-confirm btn btn-primary w-100 mt-2" id="addButton">Activate Account</button>

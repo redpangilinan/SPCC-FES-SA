@@ -92,9 +92,9 @@ const insertData = (formData) => {
             } else if (data == "weak_password") {
                 addBtnEnable();
                 customAlert("error", "Weak password!", "Password should be at least 6 characters in length and should include at least one upper case letter, one number, and one special character.");
-            } else if (data == "invalid_access_code") {
+            } else if (data == "invalid_activation_code") {
                 addBtnEnable();
-                customAlert("error", "Invalid access code!", "The access code you have entered is incorrect.");
+                customAlert("error", "Invalid activation code!", "The activation code you have entered is incorrect.");
             } else {
                 addBtnEnable();
                 console.log(data);

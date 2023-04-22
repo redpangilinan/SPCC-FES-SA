@@ -72,10 +72,10 @@ CREATE TABLE
 ALTER TABLE `tb_verification` ADD UNIQUE(`email`);
 
 CREATE TABLE
-    tb_access_codes (
-        access_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        access_name VARCHAR(255) NOT NULL,
-        access_code VARCHAR(255) NOT NULL,
+    tb_activation_codes (
+        activation_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        activation_code VARCHAR(255) NOT NULL,
+        activation_type VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
