@@ -16,7 +16,11 @@ session_start();
 </head>
 
 <body>
-    <main class="login">
+    <main class="login d-flex justify-content-around align-items-center">
+        <div class="d-none d-lg-block" style="max-width: 40rem;">
+            <h1 class="mb-4" style="font-size: 4rem; font-weight: 800;">Systems Plus Computer College Caloocan</h1>
+            <h3>A leading and globally competitive institution of learning through service and innovation.</h3>
+        </div>
         <form class="login-form card p-4 p-lg-5 m-2">
             <h1 class="mb-4">Sign In</h1>
             <div class="form-outline mb-2">

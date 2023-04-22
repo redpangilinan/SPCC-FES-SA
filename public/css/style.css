@@ -53,9 +53,6 @@ main {
 .login {
     background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .login-form {
