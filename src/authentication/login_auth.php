@@ -19,8 +19,17 @@ if (isset($_POST['login'])) {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['user_type'] = $row['user_type'];
 
-            header("Location: ./dashboard.php");
-            exit;
+            // Redirect users based on their user_type
+            if ($row['user_type'] == 'faculty') {
+                header("Location: ./faculty.php");
+                exit;
+            } elseif ($row['user_type'] == 'student') {
+                header("Location: ./student.php");
+                exit;
+            } elseif ($row['user_type'] == 'admin') {
+                header("Location: ./dashboard.php");
+                exit;
+            }
         } else {
             echo 'Your Email or Password is incorrect!';
         }
