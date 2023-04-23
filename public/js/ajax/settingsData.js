@@ -42,6 +42,7 @@ const updateApi = (formData) => {
         contentType: false,
         success: function (data) {
             apiBtnEnable();
+            $('#api_form')[0].reset();
             if (data == "success") {
                 customAlert("success", "Success!", "The API key has been updated successfully.");
             } else {
