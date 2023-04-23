@@ -38,7 +38,7 @@ $adminCode = $stmt->fetchColumn();
         </header>
         <main class="d-flex justify-content-center align-items-center h-100">
             <!-- Add Form -->
-            <div class="card w-100 mx-2" id="form_add" style="max-width: 25rem; min-width: 19rem;">
+            <div class="card w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
                 <div class="card-header">
                     <span style="font-size: 1.3em;">Settings</span>
                 </div>
