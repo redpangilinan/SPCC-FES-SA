@@ -12,6 +12,19 @@ $("#api_form").submit(function (e) {
     updateApi(formData);
 });
 
+$(document).on("click", ".delete-data", function () {
+    let delete_id = $(this).data('id');
+    deleteConfirmation(delete_id);
+});
+
+$(document).on("click", "#generate_faculty", function () {
+    $("#faculty_code").val(generateActivationCode(8));
+});
+
+$(document).on("click", "#generate_admin", function () {
+    $("#admin_code").val(generateActivationCode(8));
+});
+
 // Update the activation codes
 const updateActivation = (formData) => {
     $.ajax({
@@ -74,4 +87,17 @@ const apiBtnDisable = () => {
 const apiBtnEnable = () => {
     document.querySelector("#api_button").innerHTML = `<i class="fa-solid fa-check"></i>`;
     document.querySelector("#api_button").disabled = false;
+}
+
+// Generate a random activation code
+const generateActivationCode = (n) => {
+    let activationCode = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const length = n;
+
+    for (let i = 0; i < length; i++) {
+        activationCode += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    return activationCode;
 }

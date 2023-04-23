@@ -49,14 +49,14 @@ $adminCode = $stmt->fetchColumn();
                             <label for="faculty_code" class="form-label">Faculty</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="faculty_code" id="faculty_code" placeholder="Activation Code" value="<?php echo $facultyCode ?>" autocomplete="off" required>
-                                <button type="button" class="btn btn-outline-secondary" id="refresh_faculty" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
+                                <button type="button" class="btn btn-outline-secondary" id="generate_faculty" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="admin_code" class="form-label">Admin</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="admin_code" id="admin_code" placeholder="Activation Code" value="<?php echo $adminCode ?>" autocomplete="off" required>
-                                <button type="button" class="btn btn-outline-secondary" id="refresh_admin" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
+                                <button type="button" class="btn btn-outline-secondary" id="generate_admin" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-dark w-100 mt-2" id="activation_button">Save changes</button>
