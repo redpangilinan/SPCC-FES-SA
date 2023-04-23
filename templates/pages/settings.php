@@ -15,14 +15,6 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $adminCode = $stmt->fetchColumn();
 
-// Fetch API key
-$sql = "SELECT key_value FROM tb_api_keys WHERE api_id = 1";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$apiKey = $stmt->fetchColumn();
-
-$stmt = null;
-$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -39,45 +31,51 @@ $conn = null;
 </head>
 
 <body>
-    <main class="d-flex justify-content-center align-items-center vh-100">
-        <!-- Add Form -->
-        <div class="card w-100 mx-2" id="form_add" style="max-width: 25rem; min-width: 19rem;">
-            <div class="card-header">
-                <span style="font-size: 1.3em;">Settings</span>
+    <div class="container-fluid">
+        <header class="my-3">
+            <h1>Settings</h1>
+            <hr>
+        </header>
+        <main class="d-flex justify-content-center align-items-center h-100">
+            <!-- Add Form -->
+            <div class="card w-100 mx-2" id="form_add" style="max-width: 25rem; min-width: 19rem;">
+                <div class="card-header">
+                    <span style="font-size: 1.3em;">Settings</span>
+                </div>
+                <div class="card-body">
+                    <form id="activation_form">
+                        <h3 class="text-center">Activation Codes</h3>
+                        <div class="mb-3">
+                            <label for="faculty_code" class="form-label">Faculty</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="faculty_code" id="faculty_code" placeholder="Activation Code" value="<?php echo $facultyCode ?>" autocomplete="off" required>
+                                <button type="button" class="btn btn-outline-secondary" id="refresh_faculty" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="admin_code" class="form-label">Admin</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="admin_code" id="admin_code" placeholder="Activation Code" value="<?php echo $adminCode ?>" autocomplete="off" required>
+                                <button type="button" class="btn btn-outline-secondary" id="refresh_admin" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100 mt-2" id="activation_button">Save changes</button>
+                    </form>
+                    <hr>
+                    <form id="api_form">
+                        <h3 class="text-center">API Keys</h3>
+                        <div class="mb-3">
+                            <label for="api_key" class="form-label">OpenAI API Key</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="api_key" id="api_key" placeholder="API Key" value="" autocomplete="off" required>
+                                <button type="submit" class="btn btn-dark" id="api_button"><i class="fa-solid fa-check"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-                <form id="activation_form">
-                    <h3 class="text-center">Activation Codes</h3>
-                    <div class="mb-3">
-                        <label for="faculty_code" class="form-label">Faculty</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="faculty_code" id="faculty_code" placeholder="Activation Code" value="<?php echo $facultyCode ?>" autocomplete="off" required>
-                            <button type="button" class="btn btn-outline-secondary" id="refresh_faculty" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="admin_code" class="form-label">Admin</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="admin_code" id="admin_code" placeholder="Activation Code" value="<?php echo $adminCode ?>" autocomplete="off" required>
-                            <button type="button" class="btn btn-outline-secondary" id="refresh_admin" data-bs-toggle="tooltip" data-bs-title="Generate new code"><i class="fa-solid fa-refresh"></i></button>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100 mt-2" id="activation_button">Save changes</button>
-                </form>
-                <hr>
-                <form id="api_form">
-                    <h3 class="text-center">API Keys</h3>
-                    <div class="mb-3">
-                        <label for="api_key" class="form-label">OpenAI API Key</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="api_key" id="api_key" placeholder="API Key" value="<?php echo $apiKey ?>" autocomplete="off" required>
-                            <button type="submit" class="btn btn-dark" id="api_button"><i class="fa-solid fa-check"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

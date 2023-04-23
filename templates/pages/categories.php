@@ -18,50 +18,48 @@ session_start();
 </head>
 
 <body>
-    <main>
-        <section class="container-fluid">
-            <header class="my-3">
-                <h1>Categories</h1>
-                <hr>
-            </header>
-            <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
-                <!-- Add Form -->
-                <form class="card align-self-start w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
-                    <div class="card-header">
-                        <span style="font-size: 1.3em;">Add Category</span>
+    <div class="container-fluid">
+        <header class="my-3">
+            <h1>Categories</h1>
+            <hr>
+        </header>
+        <main class="d-flex flex-column flex-lg-row gap-3 mb-4">
+            <!-- Add Form -->
+            <form class="card align-self-start w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
+                <div class="card-header">
+                    <span style="font-size: 1.3em;">Add Category</span>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" name="category" id="category" placeholder="Category" autocomplete="off" required>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Category</label>
-                            <input type="text" class="form-control" name="category" id="category" placeholder="Category" autocomplete="off" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="weight" class="form-label">Weight (%)</label>
-                            <input type="number" class="form-control" name="weight" id="weight" placeholder="20" required>
-                        </div>
-                        <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Add Category</button>
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Weight (%)</label>
+                        <input type="number" class="form-control" name="weight" id="weight" placeholder="20" required>
                     </div>
-                </form>
-                <div class="w-100">
-                    <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
-                    <div class="table-responsive">
-                        <table class="table bg-white table-bordered table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Category</th>
-                                    <th>Weight</th>
-                                    <th>Modify</th>
-                                </tr>
-                            </thead>
-                            <tbody id="data-results">
-                            </tbody>
-                        </table>
-                    </div>
+                    <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Add Category</button>
+                </div>
+            </form>
+            <div class="w-100">
+                <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
+                <div class="table-responsive">
+                    <table class="table bg-white table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Weight</th>
+                                <th>Modify</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-results">
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-    </main>
+        </main>
+    </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <!-- Edit Modal -->
