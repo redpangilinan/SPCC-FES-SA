@@ -74,17 +74,19 @@ ALTER TABLE `tb_verification` ADD UNIQUE(`email`);
 CREATE TABLE
     tb_activation_codes (
         activation_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        activation_code VARCHAR(255) NOT NULL,
-        activation_type VARCHAR(255) NOT NULL,
+        activation_code VARCHAR(32) NOT NULL,
+        activation_type VARCHAR(10) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
+
+ALTER TABLE `tb_activation_codes` ADD UNIQUE(`activation_code`);
 
 CREATE TABLE
     tb_api_keys (
         api_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         user_id INT UNSIGNED NOT NULL,
-        api_name VARCHAR(255) NOT NULL,
+        api_name VARCHAR(60) NOT NULL,
         key_value VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
