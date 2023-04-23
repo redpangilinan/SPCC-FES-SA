@@ -41,7 +41,7 @@ session_start();
                                 <?php include "../components/select_categories.php" ?>
                             </select>
                         </div>
-                        <button type="submit" class="add-confirm btn btn-primary" id="addButton">Add Question</button>
+                        <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Add Question</button>
                     </div>
                 </form>
                 <div class="w-100">

@@ -35,7 +35,7 @@ if (!isset($_GET['email']) && !isset($_GET['code'])) {
 <body>
     <main class="d-flex justify-content-center align-items-center vh-100">
         <!-- Add Form -->
-        <form class="card w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
+        <form class="card w-100 mx-2" id="form_add" style="max-width: 25rem; min-width: 19rem;">
             <div class="card-header">
                 <span style="font-size: 1.3em;">Activate your account</span>
             </div>
@@ -64,7 +64,7 @@ if (!isset($_GET['email']) && !isset($_GET['code'])) {
                         <input type="password" class="form-control" name="activation_code" id="activation_code" placeholder="Access Code">
                     </div>
                 </div>
-                <button type="submit" class="add-confirm btn btn-primary w-100 mt-2" id="addButton">Activate Account</button>
+                <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Activate Account</button>
             </div>
         </form>
     </main>

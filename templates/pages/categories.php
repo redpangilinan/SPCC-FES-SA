@@ -33,13 +33,13 @@ session_start();
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
-                            <input type="text" class="form-control" name="category" id="category" placeholder="Category" required>
+                            <input type="text" class="form-control" name="category" id="category" placeholder="Category" autocomplete="off" required>
                         </div>
                         <div class="mb-3">
                             <label for="weight" class="form-label">Weight (%)</label>
                             <input type="number" class="form-control" name="weight" id="weight" placeholder="20" required>
                         </div>
-                        <button type="submit" class="add-confirm btn btn-primary" id="addButton">Add Category</button>
+                        <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Add Category</button>
                     </div>
                 </form>
                 <div class="w-100">
