@@ -39,12 +39,15 @@ CREATE TABLE
     tb_evaluations (
         evaluation_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         faculty_id INT UNSIGNED NOT NULL,
-        semester VARCHAR(255) NOT NULL,
-        access_code VARCHAR(255) NOT NULL,
-        expiration_date DATE NOT NULL,
-        FOREIGN KEY (faculty_id) REFERENCES tb_users(user_id),
-        UNIQUE (faculty_id)
+        school_year VARCHAR(10) NOT NULL,
+        semester VARCHAR(20) NOT NULL,
+        access_code VARCHAR(12) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (faculty_id) REFERENCES tb_users(user_id)
     );
+
+ALTER TABLE `tb_evaluations` ADD UNIQUE(`access_code`);
 
 CREATE TABLE
     tb_reports (
