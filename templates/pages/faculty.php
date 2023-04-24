@@ -21,7 +21,7 @@ $semester = $semester_sy['semester'];
 
 <body>
     <div class="container-fluid">
-        <header class="my-3">
+        <header class="my-3 overflow-hidden">
             <h1><?php echo $_SESSION["fullname"] ?></h1>
             <hr>
         </header>
@@ -57,7 +57,7 @@ $semester = $semester_sy['semester'];
                             <input type="hidden" name="semester" id="semester" value="' . $semester . '">
                             <label for="access_code" class="form-label">Access Code</label>
                             <input type="text" class="form-control mb-2" name="access_code" id="access_code" placeholder="Access Code" value="N/A" readonly>
-                            <button type="submit" class="btn btn-dark" id="activate_evaluation">Activate Evaluation</button>
+                            <button type="submit" class="btn btn-dark w-100 mt-2" id="activate_evaluation">Activate Evaluation</button>
                         </form>';
                     }
 
