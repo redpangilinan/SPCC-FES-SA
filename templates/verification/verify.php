@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if (!isset($_GET['email']) && !isset($_GET['code'])) {
+if (!isset($_GET['email']) && !isset($_GET['g'])) {
     die("Error: Email and verification code does not exist.");
 } else {
     require "../../config/connection.php";
     $stmt = $conn->prepare("SELECT email, verification_code FROM tb_verification WHERE email = :email AND verification_code = :code");
     $stmt->bindParam(":email", $_GET['email']);
-    $stmt->bindParam(":code", $_GET['code']);
+    $stmt->bindParam(":code", $_GET['g']);
     $stmt->execute();
 
     if ($stmt->rowCount() == 0) {
@@ -41,7 +41,7 @@ if (!isset($_GET['email']) && !isset($_GET['code'])) {
             </div>
             <div class="card-body">
                 <input type="hidden" name="email" id="email" value="<?php echo $_GET['email'] ?>">
-                <input type="hidden" name="verification_code" id="verification_code" value="<?php echo $_GET['code'] ?>">
+                <input type="hidden" name="verification_code" id="verification_code" value="<?php echo $_GET['g'] ?>">
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
