@@ -15,7 +15,7 @@ if (!$user) {
     if ($stmt->execute([$verify_email, $verification_code])) {
         $to = $verify_email;
         $subject = "Verify your account";
-        $message = "Click the following link to verify your email address: http://localhost/Projects/github/SPCC-FES-SA/templates/pages/verify.php?email=" . urlencode($verify_email) . "&code=$verification_code";
+        $message = "Click the following link to verify your email address: http://localhost/Projects/github/SPCC-FES-SA/templates/verification/verify.php?email=" . urlencode($verify_email) . "&g=$verification_code";
         $headers = "From: redpangilinan715@gmail.com" . "\r\n" .
             "Reply-To: redpangilinan715@gmail.com" . "\r\n" .
             "X-Mailer: PHP/" . phpversion();

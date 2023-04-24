@@ -84,8 +84,8 @@ const insertData = (formData) => {
                 $('#form_add')[0].reset();
                 customAlert("success", "Success!", "Your account has been activated!");
                 setTimeout(function () {
-                    window.location.href = "./login.php";
-                }, 1000);
+                    window.location.href = "../pages/login.php";
+                }, 3000);
             } else if (data == "password_mismatch") {
                 addBtnEnable();
                 customAlert("error", "Password mismatch!", "Please confirm your password properly.");
