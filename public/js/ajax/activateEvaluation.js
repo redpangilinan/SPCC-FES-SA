@@ -28,7 +28,7 @@ const createEvaluation = (formData) => {
                 <p class="mb-0">Please wait... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></p>
                 </div>`);
                 document.querySelector("#access_msg").remove();
-                setTimeout(function () { window.location.reload(); }, 10000);
+                setTimeout(function () { window.location.reload(); }, 5000);
             } else if (data == "evaluation_already_exists") {
                 actBtnEnable();
                 console.log(data)
