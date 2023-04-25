@@ -2,13 +2,15 @@
 require "../../../config/connection.php";
 
 $input = $_POST['input'];
-$sql = "SELECT q.question_id, q.question, c.category
+$sql =
+    "SELECT q.question_id, q.question, c.category
     FROM tb_questions q
     JOIN tb_categories c ON q.category_id = c.category_id
     WHERE (q.question_id LIKE '{$input}%'
         OR c.category LIKE '{$input}%'
         OR q.question LIKE '{$input}%')
-    ORDER BY q.question_id";
+    ORDER BY c.weight DESC, q.question_id ASC
+    ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

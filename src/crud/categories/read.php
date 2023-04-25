@@ -7,7 +7,7 @@ FROM tb_categories
 WHERE (category_id LIKE '{$input}%'
     OR category LIKE '{$input}%'
     OR weight LIKE '{$input}%')
-    ORDER BY category_id";
+    ORDER BY weight DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
