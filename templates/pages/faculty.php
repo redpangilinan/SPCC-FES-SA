@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include "../../src/helpers/get_semester_sy.php";
 $semester_sy = getSemesterSy();
 $school_year = $semester_sy['school_year'];

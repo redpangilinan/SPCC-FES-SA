@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include "../../src/helpers/get_semester_sy.php";
 $semester_sy = getSemesterSy();
 $current_sy = $semester_sy['school_year'];
@@ -49,6 +51,11 @@ $current_semester = $semester_sy['semester'];
                             $school_year = $result['school_year'];
                             $semester = $result['semester'];
 
+                            $_SESSION['eval_evaluation_id'] = $evaluation_id;
+                            $_SESSION['eval_faculty_id'] = $faculty_id;
+                            $_SESSION['eval_school_year'] = $school_year;
+                            $_SESSION['eval_semester'] = $semester;
+
                             if ($school_year == $current_sy && $semester == $current_semester) {
                                 $stmt = $conn->prepare("SELECT created_at FROM tb_reports WHERE student_id = :student_id AND evaluation_id = :evaluation_id");
                                 $stmt->bindParam(":student_id", $student_id);
@@ -56,6 +63,10 @@ $current_semester = $semester_sy['semester'];
                                 $stmt->execute();
                                 if ($stmt->rowCount() > 0) {
                                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                    unset($_SESSION['eval_evaluation_id']);
+                                    unset($_SESSION['eval_faculty_id']);
+                                    unset($_SESSION['eval_school_year']);
+                                    unset($_SESSION['eval_semester']);
                                     echo '
                                     <div class="alert alert-success" role="alert">
                                     <h3 class="alert-heading">You have already submitted an evaluation!</h3>
@@ -65,15 +76,14 @@ $current_semester = $semester_sy['semester'];
                                     </div>
                                     <button class="btn btn-dark w-100" onclick="javascript:history.back()">Re-enter access code</button>';
                                 } else {
-                                    $_SESSION['eval_evaluation_id'] = $evaluation_id;
-                                    $_SESSION['eval_faculty_id'] = $faculty_id;
-                                    $_SESSION['eval_school_year'] = $school_year;
-                                    $_SESSION['eval_semester'] = $semester;
-
                                     header("Location: ../../templates/pages/student_evaluation.php");
                                     exit;
                                 }
                             } else {
+                                unset($_SESSION['eval_evaluation_id']);
+                                unset($_SESSION['eval_faculty_id']);
+                                unset($_SESSION['eval_school_year']);
+                                unset($_SESSION['eval_semester']);
                                 echo '
                                 <div class="alert alert-danger" role="alert">
                                 <h3 class="alert-heading">Evaluation has already expired!</h3>
