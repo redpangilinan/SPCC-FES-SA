@@ -29,6 +29,15 @@ if (isset($_POST['login'])) {
             } elseif ($row['user_type'] == 'admin') {
                 header("Location: ./dashboard.php");
                 exit;
+            } else {
+                unset($_SESSION['email']);
+                unset($_SESSION['fullname']);
+                unset($_SESSION['password']);
+                unset($_SESSION['user_id']);
+                unset($_SESSION['user_type']);
+
+                header("Location: ./login.php");
+                exit;
             }
         } else {
             echo 'Your Email or Password is incorrect!';
