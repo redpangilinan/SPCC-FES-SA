@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../../src/authentication/auto_login.php";
 ?>
 
 <!DOCTYPE html>
