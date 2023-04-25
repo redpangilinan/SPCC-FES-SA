@@ -1,14 +1,18 @@
-// Creates a custom alert
-function customAlert(icon, title, text) {
+// Custom alerts
+const customAlert = (icon, title, text, reloadPage = false) => {
     Swal.fire({
         icon: icon,
         title: title,
         text: text,
+    }).then(() => {
+        if (reloadPage) {
+            location.reload();
+        }
     });
 }
 
 // Confirm first before deleting data
-function deleteConfirmation(delete_id) {
+const deleteConfirmation = (delete_id) => {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
