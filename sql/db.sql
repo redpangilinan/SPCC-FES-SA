@@ -57,7 +57,7 @@ CREATE TABLE
         rating FLOAT NOT NULL,
         comment TEXT,
         responses JSON,
-        sentiment JSON,
+        sentiment VARCHAR(10),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (evaluation_id) REFERENCES tb_evaluations(evaluation_id),
