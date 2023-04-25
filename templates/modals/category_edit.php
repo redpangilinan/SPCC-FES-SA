@@ -12,7 +12,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <input type="hidden" name="primary_id" id="primary_id" value="<?php echo $primary_id ?>">
 <div class="mb-3">
     <label for="edit_category" class="form-label">Category</label>
-    <input type="text" class="form-control" name="edit_category" id="edit_category" placeholder="Category" value="<?php echo $row['category'] ?>" required>
+    <input type="text" class="form-control" name="edit_category" id="edit_category" placeholder="Category" value="<?php echo $row['category'] ?>" autocomplete="off" required>
 </div>
 <div class="mb-3">
     <label for="edit_weight" class="form-label">Weight (%)</label>
