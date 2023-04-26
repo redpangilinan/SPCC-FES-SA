@@ -167,7 +167,7 @@ $eval_faculty_name = $result['lastname'] . ", " . $result['firstname'];
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="../../public/js/alerts.js"></script>
-    <script src="../../public/js/ajax/submitEvaluation.js"></script>
+    <script src="../../public/js/ajax/evaluations/submitEvaluation.js"></script>
 </body>
 
 </html>

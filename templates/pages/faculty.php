@@ -77,7 +77,7 @@ $semester = $semester_sy['semester'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="../../public/js/alerts.js"></script>
     <script src="../../public/js/copyToClipboard.js"></script>
-    <script src="../../public/js/ajax/activateEvaluation.js"></script>
+    <script src="../../public/js/ajax/evaluations/activateEvaluation.js"></script>
 </body>
 
 </html>
