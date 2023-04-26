@@ -20,35 +20,33 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header class="my-3">
-            <h1>Users</h1>
-            <hr>
-        </header>
-        <main class="container">
-            <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
-                <div class="w-100">
-                    <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
-                    <div class="table-responsive">
-                        <table class="table bg-white table-bordered table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Date Created</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Modify</th>
-                                </tr>
-                            </thead>
-                            <tbody id="data-results">
-                            </tbody>
-                        </table>
-                    </div>
+    <header class="container-fluid my-3">
+        <h1>Users</h1>
+        <hr>
+    </header>
+    <main class="container">
+        <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
+            <div class="w-100">
+                <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
+                <div class="table-responsive">
+                    <table class="table bg-white table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Date Created</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Modify</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-results">
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <!-- Edit Modal -->

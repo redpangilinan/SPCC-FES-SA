@@ -14,4 +14,5 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo "<option value='$category_id' $selected>$category</option>";
 }
 
+$stmt = null;
 $conn = null;
