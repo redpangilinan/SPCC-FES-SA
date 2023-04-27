@@ -120,6 +120,7 @@ main {
 /* Navbar */
 .topbar {
   background: #e1e1e1;
+  width: calc(100% - 0%);
   padding: 1em;
   display: flex;
   justify-content: end;
@@ -127,7 +128,28 @@ main {
   height: 4rem;
   align-items: center;
 }
-
+.topbar-logout-sec {
+  width: 100%;
+  max-width: 13rem;
+  max-height: 2rem;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.topbar-logout-sec img {
+  max-width: 2.1rem;
+  max-height: 2.1rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+.topbar-username {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
 .sidebar {
   top: 0;
   background: #ececec;
@@ -147,7 +169,6 @@ main {
 .sidebar nav {
   position: relative;
 }
-  
 .sidebar .logo {
   max-width: 4rem;
 }
@@ -159,7 +180,6 @@ main {
     left: 0;
     padding-right: 1em;
 }
-  
 .sidebar-name {
     display: flex;
     flex-direction: column;
@@ -192,7 +212,6 @@ main {
     justify-content: center;
     transition: 0.5s;
   }
-  
   .menu-bar {
     height: calc(100% - 55px);
     display: flex;
@@ -200,18 +219,15 @@ main {
     justify-content: space-between;
     overflow-y: auto;
   }
-  
   .menu-bar::-webkit-scrollbar {
     display: none;
   }
-  
   .menu-bar .menu nav ul {
     list-style: none;
     padding: 0;
     justify-content: center;
     white-space: nowrap;
   }
-  
   nav p img {
     height: 100%;
     max-height: 3.3rem;
@@ -219,7 +235,6 @@ main {
     margin: 0 1em;
     white-space: nowrap;
   }
-  
   .sidebar.close nav p img {
     width: 100%;
     max-width: 2.3rem;
@@ -227,7 +242,6 @@ main {
     max-height: 2.3rem;
     white-space: nowrap;
   }
-  
   .profile-side {
     max-width: 3rem;
     max-height: 3rem;
@@ -243,7 +257,6 @@ main {
   white-space: nowrap;
   transition: 0.5s;
 }
-
 nav a {
   text-decoration: none;
   color: #707070;
@@ -252,9 +265,7 @@ nav a {
   align-items: center;
   white-space: nowrap;
   transition: 0.5s;
-
 }
-
 nav .i {
   width: 2.5em;
   max-width: 100%;
@@ -265,10 +276,57 @@ nav .i {
   transition: 0.5s;
 
 }
-
 nav li:hover,
 nav li:focus {
   background: #d0d0d0;
 }
-
+/* popop */
+.popup-logout {
+  height: 100%;
+  max-height: 24rem;
+  min-height: 22rem;
+  width: 100%;
+  max-width: 23rem;
+  min-width: 21rem;
+  background: #e1e1e1;
+  top: 7.5%;
+  right: 0;
+  position: fixed;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2), 0 2px 10px 0 rgba(0, 0, 0, 0.10);
+  display: none;
+  border-radius: 5px;
+  z-index: 99;
+}
+.popup-logout-sec1 {
+  background: #e1e1e1;
+  height: 79%;
+  padding: 1em;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+.popup-logout-sec1 .popup-profile {
+  width: 45%;
+  height: 55%;
+  border: solid .3em;
+  border-color: #d0d0d0;
+  border-radius: 50%;
+}
+.popup-logout-sec2 {
+  background: #ececec;
+  height: 21%;
+  display: flex;
+  padding: 0 1em;
+  justify-content: space-between;
+  align-items: center;
+}
+.popup-logout-sec2 .popup-profile-button,
+.popup-profile-logout {
+  text-decoration: none;
+  color: #707070;
+  padding: .5em;
+  width: 30%;
+  text-align: center;
+  background: #d0d0d0;
+}
 

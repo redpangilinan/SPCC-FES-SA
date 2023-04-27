@@ -1,13 +1,12 @@
 
-
 <div class="d-flex justify-content-end topbar">
-    <div class="topbar-logout-sec">
-        <a class="topbar-profile"><img src=""></a>
+    <div class="topbar-logout-sec" id="popup-btn" onclick="LogOutFunction()">
+        <a class="topbar-profile"><img src="#"></a>
         <a class="topbar-username">asd</a>
     </div>
 </div>
 
-<div class="sidebar">
+<div class="sidebar close">
 	<nav>
 		<div class="sidebar-header">
 			<div class="sidebar-logo">
@@ -39,3 +38,42 @@
 		</div>
 	</div>
 </div>
+
+
+<div class="popup-logout pop" id="popup">
+    <div class="popup-logout-sec1">
+        <img src="#" alt="" class="popup-profile">
+        <p class="popup-name">Name</p>
+        <p class="popup-student-number">20201125646</p>
+    </div>
+    <div class="popup-logout-sec2">
+        <a href="#" class="popup-profile-button">Profile</a>
+        <a href="#" class="popup-profile-logout" id="popup-profile-logout">Sign Out</a>
+    </div>
+</div>
+
+<script>
+	const sidebar = document.querySelector(".sidebar");
+	const toggle = document.querySelector(".toggle");
+	const logoutpop = document.getElementById('popup');
+	
+
+	toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+});
+$(document).ready(function () {
+    document.onclick = function (div) {
+        if (div.target.id !== 'popup' && div.target.id !== 'popup-btn') {
+            logoutpop.style.display = "none";
+        }
+    }
+});
+function LogOutFunction() {
+    if (logoutpop.style.display === "block") {
+        logoutpop.style.display = "none";
+    } else {
+        logoutpop.style.display = "block";
+    }
+}
+
+</script>
