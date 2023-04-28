@@ -1,2 +1,2 @@
 # SPCC-FES-SA
- Faculty Evaluation System with Sentiment Analysis for Systems Plus Computer College Caloocan
+ This project offers faculty evaluations powered with Sentiment Analysis, developed for Systems Plus Computer College Caloocan.
