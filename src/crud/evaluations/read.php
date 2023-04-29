@@ -45,6 +45,7 @@ if (!empty($result)) {
             <td><?php echo $row["average_rating"] ? $row["average_rating"] : 'N/A'; ?></td>
             <td>
                 <div class="btn-group" role="group" aria-label="modify">
+                    <button data-id="<?php echo $row["evaluation_id"] ?>" class="view-data btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#responsesModal"><i class="fas fa-list"></i></button>
                     <button data-id="<?php echo $row["evaluation_id"] ?>" class="delete-data btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                 </div>
             </td>
