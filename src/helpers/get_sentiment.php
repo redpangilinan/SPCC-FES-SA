@@ -1,6 +1,6 @@
 <?php
 
-include '../../vendor/autoload.php';
+require "../../../vendor/autoload.php";
 
 use Sentiment\Analyzer;
 
@@ -8,14 +8,19 @@ function getSentiment($comment)
 {
     $analyzer = new Analyzer();
     $scores = $analyzer->getSentiment($comment);
-    $compoundScore = $scores['compound'];
 
-    if ($compoundScore > 0.05) {
-        return "Positive";
-    } elseif ($compoundScore < -0.05) {
-        return "Negative";
+    if (isset($scores['compound'])) {
+        $compoundScore = $scores['compound'];
+
+        if ($compoundScore > 0.05) {
+            return "Positive";
+        } elseif ($compoundScore < -0.05) {
+            return "Negative";
+        } else {
+            return "Neutral";
+        }
     } else {
-        return "Neutral";
+        return "N/A";
     }
 }
 
@@ -29,7 +34,3 @@ function translate($q, $sl, $tl)
         return $q;
     }
 }
-
-// Sample usage
-$comment1 = translate("Nageenjoy ako sa pag tuturo niya, masaya sia maging prof", "fil", "en");
-echo "Comment: " . $comment1 . " (" . getSentiment($comment1) . ")";
