@@ -62,6 +62,40 @@ authorize("admin");
         </div>
     </main>
 
+    <div class="modal fade" id="responsesModal" tabindex="-1" aria-labelledby="responsesModalLabel" aria-hidden="true">
+        <!-- Edit Modal -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="responsesModalLabel">Responses</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Edit Form -->
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <th>Positive</th>
+                            <th>Negative</th>
+                            <th>Neutral</th>
+                        </thead>
+                        <tbody id="sentimentCount"></tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Sentiment</th>
+                        </thead>
+                        <tbody id="responsesBody"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
