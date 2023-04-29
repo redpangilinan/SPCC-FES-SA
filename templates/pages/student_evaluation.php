@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include '../../src/authentication/logout.php';
 include '../../src/authentication/authorize.php';
-authorize("admin");
+authorize("student");
 
 // Setup evaluation variables and unset the evaluation session values
 if (
