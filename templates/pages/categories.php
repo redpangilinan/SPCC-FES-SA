@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include '../../src/authentication/logout.php';
+include '../../src/authentication/authorize.php';
+authorize("admin");
 ?>
 
 <!DOCTYPE html>

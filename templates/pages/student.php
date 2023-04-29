@@ -2,7 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include '../../src/authentication/logout.php';
 include "../../src/helpers/get_semester_sy.php";
+include '../../src/authentication/authorize.php';
+authorize("student");
 $semester_sy = getSemesterSy();
 $school_year = $semester_sy['school_year'];
 $semester = $semester_sy['semester'];
