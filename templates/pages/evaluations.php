@@ -22,45 +22,49 @@ authorize("admin");
     <title>Evaluations</title>
 </head>
 
-<body>
-    <header class="container-fluid my-3">
-        <h1>Evaluations</h1>
-        <hr>
-    </header>
-    <main class="container">
-        <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
-            <div class="w-100">
-                <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
-                <div class="d-flex flex-row-reverse gap-2">
-                    <select class="form-select mb-2" id="filter-semester" aria-label="Category" style="max-width: 15rem;">
-                        <option value="All">All</option>
-                        <option value="1st Semester">1st Semester</option>
-                        <option value="2nd Semester">2nd Semester</option>
-                    </select>
-                    <select class="form-select mb-2" id="filter-sy" aria-label="Category" style="max-width: 15rem;">
-                        <?php include "../components/select_sy.php" ?>
-                    </select>
-                </div>
-                <div class="table-responsive">
-                    <table class="table bg-white table-bordered table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>School Year</th>
-                                <th>Semester</th>
-                                <th>Responses</th>
-                                <th>Average Rating</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="data-results">
-                        </tbody>
-                    </table>
+<body id="body-pd" class="body-core">
+    <?php include '../components/navbar.php' ?>
+    <main>
+        <div class="container-fluid my-3 pt-3">
+            <h1>Evaluations</h1>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
+                <div class="w-100">
+                    <input type="text" class="form-control mb-2" id="search-data" placeholder="Search">
+                    <div class="d-flex flex-row-reverse gap-2">
+                        <select class="form-select mb-2" id="filter-semester" aria-label="Category" style="max-width: 15rem;">
+                            <option value="All">All</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                        </select>
+                        <select class="form-select mb-2" id="filter-sy" aria-label="Category" style="max-width: 15rem;">
+                            <?php include "../components/select_sy.php" ?>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table bg-white table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>School Year</th>
+                                    <th>Semester</th>
+                                    <th>Responses</th>
+                                    <th>Average Rating</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-results">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+    <?php include '../components/footer.php' ?>
 
     <div class="modal fade" id="responsesModal" tabindex="-1" aria-labelledby="responsesModalLabel" aria-hidden="true">
         <!-- Edit Modal -->

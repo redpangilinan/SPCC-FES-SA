@@ -21,13 +21,14 @@ $current_semester = $semester_sy['semester'];
     <title><?php echo $_SESSION["fullname"] ?></title>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <header class="my-3 overflow-hidden">
+<body id="body-pd" class="body-core">
+    <?php include '../components/navbar.php' ?>
+    <main class="container-fluid">
+        <div class="my-3 pt-3 overflow-hidden">
             <h1><?php echo $_SESSION["fullname"] ?></h1>
             <hr>
-        </header>
-        <main class="d-flex justify-content-center align-items-center h-100">
+        </div>
+        <div class="d-flex justify-content-center align-items-center h-100">
             <div class="card w-100" id="form_add" style="max-width: 30rem; min-width: 19rem;">
                 <div class="card-header">
                     <span style="font-size: 1.3em;"><?php echo "S.Y $current_sy | $current_semester" ?></span>
@@ -106,8 +107,9 @@ $current_semester = $semester_sy['semester'];
                     ?>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+    <?php include '../components/footer.php' ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

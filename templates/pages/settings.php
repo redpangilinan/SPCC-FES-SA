@@ -35,13 +35,14 @@ $adminCode = $stmt->fetchColumn();
     <title>Settings</title>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <header class="my-3">
+<body id="body-pd" class="body-core">
+    <?php include '../components/navbar.php' ?>
+    <main class="container-fluid">
+        <div class="my-3 pt-3">
             <h1>Settings</h1>
             <hr>
-        </header>
-        <main class="d-flex justify-content-center align-items-center h-100">
+        </div>
+        <div class="d-flex justify-content-center align-items-center h-100">
             <!-- Add Form -->
             <div class="card w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
                 <div class="card-header">
@@ -66,21 +67,11 @@ $adminCode = $stmt->fetchColumn();
                         </div>
                         <button type="submit" class="btn btn-dark w-100 mt-2" id="activation_button">Save changes</button>
                     </form>
-                    <hr>
-                    <form id="api_form">
-                        <h3 class="text-center">API Keys</h3>
-                        <div class="mb-3">
-                            <label for="api_key" class="form-label">OpenAI API Key</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="api_key" id="api_key" placeholder="API Key" value="" autocomplete="off" required>
-                                <button type="submit" class="btn btn-dark" id="api_button"><i class="fa-solid fa-check"></i></button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+    <?php include '../components/footer.php' ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

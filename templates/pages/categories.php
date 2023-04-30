@@ -22,13 +22,14 @@ authorize("admin");
     <title>Categories</title>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <header class="my-3">
+<body id="body-pd" class="body-core">
+    <?php include '../components/navbar.php' ?>
+    <main class="container-fluid">
+        <div class="my-3 pt-3">
             <h1>Categories</h1>
             <hr>
-        </header>
-        <main class="d-flex flex-column flex-lg-row gap-3 mb-4">
+        </div>
+        <div class="d-flex flex-column flex-lg-row gap-3 mb-4">
             <!-- Add Form -->
             <form class="card align-self-start w-100" id="form_add" style="max-width: 25rem; min-width: 19rem;">
                 <div class="card-header">
@@ -63,8 +64,9 @@ authorize("admin");
                     </table>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+    <?php include '../components/footer.php' ?>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <!-- Edit Modal -->
