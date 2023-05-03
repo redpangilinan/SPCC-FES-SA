@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include '../../src/authentication/logout.php';
 include "../../src/helpers/get_semester_sy.php";
 $semester_sy = getSemesterSy();
 $current_sy = $semester_sy['school_year'];
