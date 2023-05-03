@@ -54,7 +54,7 @@ CREATE TABLE
         report_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         evaluation_id INT UNSIGNED NOT NULL,
         student_id INT UNSIGNED NOT NULL,
-        rating FLOAT NOT NULL,
+        rating DECIMAL(3,2) NOT NULL,
         comment TEXT,
         responses JSON,
         sentiment VARCHAR(10),
