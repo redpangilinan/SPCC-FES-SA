@@ -10,14 +10,34 @@ $(document).ready(function () {
     $(document).on("click", ".view-data", function () {
         // Initialize Skeleton Loader
         $("#responsesBody").html(`
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+        <tr>
+            <td colspan='3'>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-        </div>`);
+            </td>
+        </tr>`);
         let primary_id = $(this).data('id');
         displaySentimentCount(primary_id);
         displayResponses(primary_id);
+    });
+
+    $(document).on("click", ".view-report", function () {
+        // Initialize Skeleton Loader
+        $("#reportBody").html(`
+        <tr>
+            <td colspan='2'>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            </td>
+        </tr>`);
+        let primary_id = $(this).data('id');
+        displayReport(primary_id);
     });
 
     // Show confirmation first before deleting data
@@ -70,6 +90,20 @@ const displaySentimentCount = (primary_id) => {
         },
         success: function (data) {
             $("#sentimentCount").html(data);
+        }
+    });
+}
+
+// Displays evaluation report data
+const displayReport = (primary_id) => {
+    $.ajax({
+        url: "../modals/report.php",
+        method: "POST",
+        data: {
+            primary_id: primary_id
+        },
+        success: function (data) {
+            $("#reportBody").html(data);
         }
     });
 }
