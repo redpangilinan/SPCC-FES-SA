@@ -55,7 +55,7 @@ echo '
     </thead>';
 echo '<tbody>';
 foreach ($categories as $category => $data) {
-    $average_rating = $data['rating'] / $data['count'];
+    $average_rating = round($data['rating'] / $data['count'], 2);
     $weight = $data['weight'];
     echo "<tr><td>$category ($weight%)</td><td>$average_rating</td></tr>";
 }

@@ -27,15 +27,11 @@ $(document).ready(function () {
     $(document).on("click", ".view-report", function () {
         // Initialize Skeleton Loader
         $("#reportBody").html(`
-        <tr>
-            <td colspan='2'>
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
-            </td>
-        </tr>`);
+        </div>`);
         let primary_id = $(this).data('id');
         displayReport(primary_id);
     });

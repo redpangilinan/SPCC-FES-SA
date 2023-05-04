@@ -1,6 +1,7 @@
 $("#evaluation_form").submit(function (e) {
     e.preventDefault();
     let evalComment = $("#comment").val();
+    submitDisable();
     $.ajax({
         url: "../../src/crud/reports/create.php",
         method: "POST",
@@ -82,4 +83,10 @@ const calculateAverages = (jsonData) => {
 
     // Return the results as an object
     return { categoryAverages: categoryAverages, totalWeightedAverage: totalWeightedAverage };
+}
+
+// Button modification
+const submitDisable = () => {
+    document.querySelector("#submit_evaluation").innerHTML = "Submitting...";
+    document.querySelector("#submit_evaluation").disabled = true;
 }
