@@ -38,13 +38,14 @@ CREATE TABLE
 CREATE TABLE
     tb_evaluations (
         evaluation_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        faculty_id INT UNSIGNED NOT NULL,
+        faculty_name VARCHAR(255) NOT NULL,
+        subject VARCHAR(255) NOT NULL,
         school_year VARCHAR(10) NOT NULL,
         semester VARCHAR(20) NOT NULL,
         access_code VARCHAR(12) NOT NULL,
+        permit JSON NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (faculty_id) REFERENCES tb_users(user_id)
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
 ALTER TABLE `tb_evaluations` ADD UNIQUE(`access_code`);
@@ -94,4 +95,13 @@ CREATE TABLE
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES tb_users(user_id)
+    );
+
+CREATE TABLE
+    tb_students (
+        student_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(255) NOT NULL,
+        firstname VARCHAR(50) NOT NULL,
+        lastname VARCHAR(50) NOT NULL,
+        section VARCHAR(50) NOT NULL
     );
