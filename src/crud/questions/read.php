@@ -3,7 +3,7 @@ require "../../../config/connection.php";
 
 $input = $_POST['input'];
 $sql =
-    "SELECT q.question_id, q.question, c.category
+    "SELECT ROW_NUMBER() OVER (ORDER BY q.question_id) as row_number, q.question_id, q.question, c.category
     FROM tb_questions q
     JOIN tb_categories c ON q.category_id = c.category_id
     WHERE (q.question_id LIKE '{$input}%'
@@ -18,7 +18,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!empty($result)) {
     foreach ($result as $row) { ?>
         <tr>
-            <td><?php echo $row["question_id"] ?></td>
+            <td><?php echo $row["row_number"] ?></td>
             <td><?php echo $row["question"] ?></td>
             <td><?php echo $row["category"] ?></td>
             <td>

@@ -2,7 +2,7 @@
 require "../../../config/connection.php";
 
 $input = $_POST['input'];
-$sql = "SELECT category_id, category, weight
+$sql = "SELECT ROW_NUMBER() OVER (ORDER BY category_id) as row_number, category_id, category, weight
 FROM tb_categories
 WHERE (category_id LIKE '{$input}%'
     OR category LIKE '{$input}%'
@@ -15,7 +15,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!empty($result)) {
     foreach ($result as $row) { ?>
         <tr>
-            <td><?php echo $row["category_id"] ?></td>
+            <td><?php echo $row["row_number"] ?></td>
             <td><?php echo $row["category"] ?></td>
             <td><?php echo $row["weight"] . "%" ?></td>
             <td>

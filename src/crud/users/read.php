@@ -3,7 +3,7 @@ require "../../../config/connection.php";
 
 $input = $_POST['input'];
 $sql =
-    "SELECT user_id, user_type, email, firstname, lastname, date(created_at) AS date_created
+    "SELECT ROW_NUMBER() OVER (ORDER BY user_id) as row_number, user_id, user_type, email, firstname, lastname, date(created_at) AS date_created
     FROM tb_users
     WHERE (user_id LIKE '{$input}%'
     OR user_type LIKE '{$input}%'
@@ -19,7 +19,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!empty($result)) {
     foreach ($result as $row) { ?>
         <tr>
-            <td><?php echo $row["user_id"] ?></td>
+            <td><?php echo $row["row_number"] ?></td>
             <td><?php echo $row["date_created"] ?></td>
             <td><?php echo $row["firstname"] . " " . $row["lastname"] ?></td>
             <td><?php echo $row["email"] ?></td>
