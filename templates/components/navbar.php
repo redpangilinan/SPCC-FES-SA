@@ -21,6 +21,10 @@
                             <i class='bx bx-group nav_icon'></i>
                             <span class="nav_name">Users</span>
                         </a>
+                        <a href="./student_list.php" class="nav_link <?php echo (strpos($_SERVER['REQUEST_URI'], 'student_list.php') !== false) ? 'active' : ''; ?>">
+                            <i class='bx bx-user nav_icon'></i>
+                            <span class="nav_name">Student List</span>
+                        </a>
                         <a href="./categories.php" class="nav_link <?php echo (strpos($_SERVER['REQUEST_URI'], 'categories.php') !== false) ? 'active' : ''; ?>">
                             <i class='bx bx-message-square-detail nav_icon'></i>
                             <span class="nav_name">Categories</span>
