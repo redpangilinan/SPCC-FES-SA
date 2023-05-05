@@ -5,6 +5,7 @@ USE fesdb;
 CREATE TABLE
     tb_users (
         user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        student_id INT UNSIGNED NULL,
         user_type ENUM('admin', 'faculty', 'student') NOT NULL,
         email VARCHAR(255) NOT NULL,
         password VARCHAR(60) NOT NULL,
@@ -107,3 +108,4 @@ CREATE TABLE
     );
 
 ALTER TABLE `tb_students` ADD UNIQUE(`email`);
+ALTER TABLE `tb_users` ADD FOREIGN KEY (`student_id`) REFERENCES `tb_students`(`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
