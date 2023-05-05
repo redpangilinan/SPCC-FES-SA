@@ -105,3 +105,5 @@ CREATE TABLE
         lastname VARCHAR(50) NOT NULL,
         section VARCHAR(50) NOT NULL
     );
+
+ALTER TABLE `tb_students` ADD UNIQUE(`email`);
