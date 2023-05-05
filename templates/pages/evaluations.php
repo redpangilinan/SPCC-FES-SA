@@ -43,12 +43,17 @@ authorize("admin");
                             <?php include "../components/select_sy.php" ?>
                         </select>
                     </div>
+                    <form class="d-flex flex-row-reverse gap-2" id="csv_form" method="post" enctype="multipart/form-data">
+                        <button type="submit" class="add-confirm btn btn-dark mb-2" id="csv_upload">Import</button>
+                        <input class="form-control mb-2" type="file" name="file" id="file" style="max-width: 20rem;">
+                    </form>
                     <div class="table-responsive">
                         <table class="table bg-white table-bordered table-hover">
                             <thead class="table-dark">
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Subject</th>
                                     <th>School Year</th>
                                     <th>Semester</th>
                                     <th>Responses</th>

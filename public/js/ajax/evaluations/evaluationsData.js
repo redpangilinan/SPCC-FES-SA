@@ -7,6 +7,13 @@ $(document).ready(function () {
         displayTable();
     });
 
+    $("#csv_form").submit(function (e) {
+        e.preventDefault();
+        addBtnDisable();
+        const formData = new FormData(this);
+        importCsv(formData);
+    });
+
     $(document).on("click", ".view-data", function () {
         // Initialize Skeleton Loader
         $("#responsesBody").html(`
@@ -58,6 +65,38 @@ const displayTable = () => {
         },
         success: function (data) {
             $("#data-results").html(data);
+        }
+    });
+}
+
+// Imports the CSV file to the table
+const importCsv = (formData) => {
+    $.ajax({
+        url: "../../src/crud/evaluations/csv_import.php",
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            displayTable();
+            $('#csv_form')[0].reset();
+            if (data == "success") {
+                addBtnEnable();
+                console.log(data);
+                customAlert("success", "Success!", "CSV file has been imported successfully!");
+            } else if (data == "unsupported_file") {
+                addBtnEnable();
+                console.log(data);
+                customAlert("error", "Unsupported File!", "Your file type is unsupported! Please upload a valid CSV file.");
+            } else if (data == "invalid_format") {
+                addBtnEnable();
+                console.log(data);
+                customAlert("error", "Invalid CSV Format!", "The CSV column headers should be the following: 'Faculty Name, Subject, School Year, Semester, Permit'");
+            } else {
+                addBtnEnable();
+                console.log(data);
+                customAlert("error", "Duplicate entry!", "Failed to upload duplicate records!");
+            }
         }
     });
 }
@@ -122,4 +161,15 @@ const deleteData = (delete_id) => {
             }
         }
     });
+}
+
+// Button modification
+const addBtnDisable = () => {
+    document.querySelector("#csv_upload").innerHTML = "Uploading...";
+    document.querySelector("#csv_upload").disabled = true;
+}
+
+const addBtnEnable = () => {
+    document.querySelector("#csv_upload").innerHTML = "Import";
+    document.querySelector("#csv_upload").disabled = false;
 }
