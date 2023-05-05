@@ -6,8 +6,7 @@ $schoolYear = $_POST['schoolYear'];
 $semester = $_POST['semester'];
 $sql =
     "SELECT
-        ROW_NUMBER() OVER (ORDER BY e.evaluation_id) AS row_number,
-        e.evaluation_id AS evaluation_id, 
+        e.evaluation_id AS evaluation_id,
         e.faculty_name AS fullname, 
         e.subject AS subject, 
         e.school_year AS school_year, 
@@ -26,18 +25,21 @@ $sql =
         OR r.responses LIKE '{$input}%' 
         OR r.rating LIKE '{$input}%')
     GROUP BY 
-        e.evaluation_id, 
-        e.faculty_name, 
-        e.school_year, 
+        e.evaluation_id,
+        e.faculty_name,
+        e.subject,
+        e.school_year,
         e.semester";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$count = 0;
 
 if (!empty($result)) {
-    foreach ($result as $row) { ?>
+    foreach ($result as $row) {
+        $count++ ?>
         <tr>
-            <td><?php echo $row["row_number"] ?></td>
+            <td><?php echo $count ?></td>
             <td><?php echo $row["fullname"] ?></td>
             <td><?php echo $row["subject"] ?></td>
             <td><?php echo $row["school_year"] ?></td>
