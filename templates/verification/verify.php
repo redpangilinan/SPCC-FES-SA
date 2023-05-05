@@ -1,13 +1,13 @@
 <?php
-session_start();
-
-if (!isset($_GET['email']) && !isset($_GET['g'])) {
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['verify_email']) && !isset($_SESSION['verification_code'])) {
     die("Error: Email and verification code does not exist.");
 } else {
     require "../../config/connection.php";
-    $stmt = $conn->prepare("SELECT email, verification_code FROM tb_verification WHERE email = :email AND verification_code = :code");
-    $stmt->bindParam(":email", $_GET['email']);
-    $stmt->bindParam(":code", $_GET['g']);
+    $stmt = $conn->prepare("SELECT email, verification_code FROM tb_verification WHERE email = :email");
+    $stmt->bindParam(":email", $_SESSION['verify_email']);
     $stmt->execute();
 
     if ($stmt->rowCount() == 0) {
@@ -40,8 +40,6 @@ if (!isset($_GET['email']) && !isset($_GET['g'])) {
                 <span style="font-size: 1.3em;">Activate your account</span>
             </div>
             <div class="card-body">
-                <input type="hidden" name="email" id="email" value="<?php echo $_GET['email'] ?>">
-                <input type="hidden" name="verification_code" id="verification_code" value="<?php echo $_GET['g'] ?>">
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
@@ -50,19 +48,9 @@ if (!isset($_GET['email']) && !isset($_GET['g'])) {
                     <label for="confirm_password" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Password" required>
                 </div>
-                <div class="mb-3 d-flex">
-                    <div class="w-100">
-                        <label for="user_type" class="form-label">Account:</label>
-                        <select class="form-select" name="user_type" id="user_type" aria-label="User Type">
-                            <option value="student">Student</option>
-                            <option value="faculty">Faculty</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <div class="w-100 ms-2 d-none" id="accessCodeLayer">
-                        <label for="activation_code" class="form-label">Activation Code</label>
-                        <input type="password" class="form-control" name="activation_code" id="activation_code" placeholder="Access Code">
-                    </div>
+                <div class="mb-3">
+                    <label for="verification_code" class="form-label">Verification Code</label>
+                    <input type="text" class="form-control" name="verification_code" id="verification_code" placeholder="Verification Code">
                 </div>
                 <button type="submit" class="add-confirm btn btn-dark w-100 mt-2" id="addButton">Activate Account</button>
             </div>
@@ -73,7 +61,6 @@ if (!isset($_GET['email']) && !isset($_GET['g'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="../../public/js/alerts.js"></script>
-    <script src="../../public/js/accessCheck.js"></script>
     <script src="../../public/js/ajax/usersData.js"></script>
 </body>
 

@@ -92,9 +92,12 @@ const insertData = (formData) => {
             } else if (data == "weak_password") {
                 addBtnEnable();
                 customAlert("error", "Weak password!", "Password should be at least 6 characters in length and should include at least one upper case letter, one number, and one special character.");
-            } else if (data == "invalid_activation_code") {
+            } else if (data == "invalid_verification_code") {
                 addBtnEnable();
-                customAlert("error", "Invalid activation code!", "The activation code you have entered is incorrect.");
+                customAlert("error", "Invalid verification code!", "The verification code you have entered is incorrect.");
+            } else if (data == "invalid_email") {
+                addBtnEnable();
+                customAlert("error", "Invalid email!", "Your email is not a valid SPCC email!");
             } else {
                 addBtnEnable();
                 console.log(data);

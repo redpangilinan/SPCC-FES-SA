@@ -14,8 +14,8 @@ if (!$user) {
     $stmt = $conn->prepare("INSERT INTO tb_verification (email, verification_code) VALUES (?, ?)");
     if ($stmt->execute([$verify_email, $verification_code])) {
         $to = $verify_email;
-        $subject = "Verify your account";
-        $message = "Click the following link to verify your email address: http://localhost/Projects/github/SPCC-FES-SA/templates/verification/verify.php?email=" . urlencode($verify_email) . "&g=$verification_code";
+        $subject = "Verification sent!";
+        $message = "This is your verification code: $verification_code";
         $headers = "From: redpangilinan715@gmail.com" . "\r\n" .
             "Reply-To: redpangilinan715@gmail.com" . "\r\n" .
             "X-Mailer: PHP/" . phpversion();
@@ -23,7 +23,13 @@ if (!$user) {
         if (mail($to, $subject, $message, $headers)) {
             $stmt = $conn->prepare("DELETE FROM tb_verification WHERE email = ? AND verification_code = ? AND timestamp < DATE_SUB(NOW(), INTERVAL 15 MINUTE)");
             $stmt->execute([$verify_email, $verification_code]);
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['verify_email'] = $verify_email;
+            $_SESSION['verification_code'] = $verification_code;
             echo "success";
+            exit();
         } else {
             echo "error_email_verification";
         }

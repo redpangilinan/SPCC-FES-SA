@@ -18,7 +18,7 @@ const verify = (formData) => {
             if (data == "success") {
                 $('#emailModal').modal('hide');
                 $('#form_verify')[0].reset();
-                customAlert("success", "Verification sent!", "The email verification has been sent, please check your email.");
+                location.href = '../verification/verify.php';
             } else if (data == "existing_user") {
                 customAlert("error", "Existing account!", "The email you entered already exists!");
             } else {
