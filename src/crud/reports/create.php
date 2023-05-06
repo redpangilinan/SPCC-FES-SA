@@ -8,7 +8,7 @@ require "../../../config/connection.php";
 
 // Store input values into variables
 $evalEvaluationId = $_POST['evalEvaluationId'];
-$evalStudentId = $_SESSION['user_id'];
+$evalStudentId = $_SESSION['student_id'];
 $evalRating = $_POST['evalRating'];
 $evaluationData = $_POST['evaluationData'];
 
