@@ -9,12 +9,14 @@ authorize("student");
 // Setup evaluation variables and unset the evaluation session values
 if (
     isset($_SESSION['eval_evaluation_id']) &&
-    isset($_SESSION['eval_faculty_id']) &&
+    isset($_SESSION['eval_faculty_name']) &&
+    isset($_SESSION['eval_subject']) &&
     isset($_SESSION['eval_school_year']) &&
     isset($_SESSION['eval_semester'])
 ) {
     $eval_evaluation_id = $_SESSION['eval_evaluation_id'];
-    $eval_faculty_id = $_SESSION['eval_faculty_id'];
+    $eval_faculty_name = $_SESSION['eval_faculty_name'];
+    $eval_subject = $_SESSION['eval_subject'];
     $eval_school_year = $_SESSION['eval_school_year'];
     $eval_semester = $_SESSION['eval_semester'];
 ?>
@@ -23,21 +25,14 @@ if (
     </script>
 <?php
     unset($_SESSION['eval_evaluation_id']);
-    unset($_SESSION['eval_faculty_id']);
+    unset($_SESSION['eval_faculty_name']);
+    unset($_SESSION['eval_subject']);
     unset($_SESSION['eval_school_year']);
     unset($_SESSION['eval_semester']);
 } else {
     header("Location: ./login.php");
     exit;
 }
-
-require "../../config/connection.php";
-
-$stmt = $conn->prepare("SELECT firstname, lastname FROM tb_users WHERE user_id = :faculty_id");
-$stmt->bindParam(":faculty_id", $eval_faculty_id);
-$stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-$eval_faculty_name = $result['lastname'] . ", " . $result['firstname'];
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +74,10 @@ $eval_faculty_name = $result['lastname'] . ", " . $result['firstname'];
                             <h3>Instructor</h3>
                             <p><?php echo $eval_faculty_name ?></p>
                         </div>
+                        <div class="mb-3">
+                            <h3>Subject</h3>
+                            <p><?php echo $eval_subject ?></p>
+                        </div>
                     </div>
                 </div>
                 <div class="card w-100">
@@ -107,6 +106,8 @@ $eval_faculty_name = $result['lastname'] . ", " . $result['firstname'];
                             </table>
                         </div>
                         <?php
+                        require "../../config/connection.php";
+
                         // Prepare the SQL query
                         $sql =
                             "SELECT c.category, c.weight, q.question_id, q.question 
