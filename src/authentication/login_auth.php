@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT user_id, user_type, email, firstname, lastname, password FROM tb_users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT user_id, student_id, user_type, email, firstname, lastname, password FROM tb_users WHERE email = ?");
     $stmt->execute([$email]);
 
     if ($row = $stmt->fetch()) {
@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
                 header("Location: ./faculty.php");
                 exit;
             } elseif ($row['user_type'] == 'student') {
+                $_SESSION['student_id'] = $row['student_id'];
                 header("Location: ./student.php");
                 exit;
             } elseif ($row['user_type'] == 'admin') {
@@ -35,6 +36,9 @@ if (isset($_POST['login'])) {
                 unset($_SESSION['password']);
                 unset($_SESSION['user_id']);
                 unset($_SESSION['user_type']);
+                if (isset($_SESSION['student_id'])) {
+                    unset($_SESSION['student_id']);
+                }
 
                 header("Location: ./login.php");
                 exit;
