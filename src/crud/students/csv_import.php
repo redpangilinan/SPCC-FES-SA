@@ -28,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Get the database connection
         require "../../../config/connection.php";
 
-        // Insert the data into the tb_students table
-        $stmt = $conn->prepare("INSERT INTO tb_students (email, firstname, lastname, section) VALUES (?, ?, ?, ?)");
+        // Prepare the SQL statements for inserting and updating records
+        $insert_stmt = $conn->prepare("INSERT INTO tb_students (email, firstname, lastname, section) VALUES (?, ?, ?, ?)");
+        $update_stmt = $conn->prepare("UPDATE tb_students SET firstname = ?, lastname = ?, section = ? WHERE email = ?");
 
         while (($data = fgetcsv($file, 1000, ',')) !== false) {
             // Skip the first row (header row)
@@ -42,18 +43,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $lastname = $data[2];
             $section = $data[3];
 
-            $stmt->bindParam(1, $email);
-            $stmt->bindParam(2, $firstname);
-            $stmt->bindParam(3, $lastname);
-            $stmt->bindParam(4, $section);
+            // Check if the email already exists in the database
+            $check_stmt = $conn->prepare("SELECT * FROM tb_students WHERE email = ?");
+            $check_stmt->bindParam(1, $email);
+            $check_stmt->execute();
+            $existing_record = $check_stmt->fetch();
 
-            if (!$stmt->execute()) {
-                echo "error_upload";
-                exit();
+            if ($existing_record) {
+                // If the email exists, update the existing record
+                $update_stmt->bindParam(1, $firstname);
+                $update_stmt->bindParam(2, $lastname);
+                $update_stmt->bindParam(3, $section);
+                $update_stmt->bindParam(4, $email);
+
+                if (!$update_stmt->execute()) {
+                    echo "error_upload";
+                    exit();
+                }
+            } else {
+                // If the email doesn't exist, insert a new record
+                $insert_stmt->bindParam(1, $email);
+                $insert_stmt->bindParam(2, $firstname);
+                $insert_stmt->bindParam(3, $lastname);
+                $insert_stmt->bindParam(4, $section);
+
+                if (!$insert_stmt->execute()) {
+                    echo "error_upload";
+                    exit();
+                }
             }
         }
 
-        $stmt = null;
+        $insert_stmt = null;
+        $update_stmt = null;
+        $check_stmt = null;
         $conn = null;
 
         echo "success";
