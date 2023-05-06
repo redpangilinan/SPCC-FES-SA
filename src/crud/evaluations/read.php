@@ -29,7 +29,10 @@ $sql =
         e.faculty_name,
         e.subject,
         e.school_year,
-        e.semester";
+        e.semester
+    ORDER BY 
+        e.semester,
+        e.evaluation_id";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
