@@ -109,3 +109,4 @@ CREATE TABLE
 
 ALTER TABLE `tb_students` ADD UNIQUE(`email`);
 ALTER TABLE `tb_users` ADD FOREIGN KEY (`student_id`) REFERENCES `tb_students`(`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tb_reports` DROP FOREIGN KEY `tb_reports_ibfk_2`; ALTER TABLE `tb_reports` ADD CONSTRAINT `tb_reports_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `tb_students`(`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
