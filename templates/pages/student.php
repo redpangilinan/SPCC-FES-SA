@@ -32,7 +32,7 @@ $semester = $semester_sy['semester'];
             <hr>
         </div>
         <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="card w-100" id="form_add" style="max-width: 30rem; min-width: 19rem;">
+            <div class="card w-100 mb-4" id="form_add" style="max-width: 30rem; min-width: 19rem;">
                 <div class="card-header">
                     <span style="font-size: 1.3em;"><?php echo "S.Y $school_year | $semester" ?></span>
                 </div>
@@ -42,6 +42,45 @@ $semester = $semester_sy['semester'];
                         <input type="text" class="form-control mb-2" name="access_code" id="access_code" placeholder="Access Code" autocomplete="off">
                         <button type="submit" class="btn btn-dark w-100 mt-2" id="start_evaluation_button">Start Evaluation</button>
                     </form>
+                    <?php
+                    require "../../config/connection.php";
+
+                    // Retrieve the student's section based on their session ID
+                    $student_id = $_SESSION["student_id"];
+                    $stmt = $conn->prepare("SELECT section FROM tb_students WHERE student_id = :id");
+                    $stmt->bindParam(':id', $student_id);
+                    $stmt->execute();
+                    $section_row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $section = $section_row["section"];
+
+                    // Retrieve evaluations from tb_evaluations table that are permitted for the student's section
+                    $stmt = $conn->prepare("SELECT faculty_name, subject, access_code, permit FROM tb_evaluations WHERE school_year = :school_year AND semester = :semester");
+                    $stmt->bindParam(':school_year', $school_year);
+                    $stmt->bindParam(':semester', $semester);
+                    $stmt->execute();
+                    $evaluations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Filter the evaluations to only include those that are permitted for the student's section
+                    $permitted_evaluations = array();
+                    foreach ($evaluations as $evaluation) {
+                        $permit_sections = explode(",", $evaluation["permit"]);
+                        if (in_array($section, $permit_sections)) {
+                            $permitted_evaluations[] = $evaluation;
+                        }
+                    }
+
+                    // Print the permitted evaluations in a table
+                    if (!empty($permitted_evaluations)) {
+                        echo "<div class='table-responsive mt-3'>";
+                        echo "<table class='table'>";
+                        echo "<tr><th>Faculty Name</th><th>Subject</th><th>Access Code</th></tr>";
+                        foreach ($permitted_evaluations as $evaluation) {
+                            echo "<tr><td>" . $evaluation["faculty_name"] . "</td><td>" . $evaluation["subject"] . "</td><td>" . $evaluation["access_code"] . "</td></tr>";
+                        }
+                        echo "</table>";
+                        echo "</div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
