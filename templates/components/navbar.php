@@ -37,10 +37,6 @@
                             <i class='bx bx-check-double nav_icon'></i>
                             <span class="nav_name">Evaluations</span>
                         </a>
-                        <a href="./settings.php" class="nav_link <?php echo (strpos($_SERVER['REQUEST_URI'], 'settings.php') !== false) ? 'active' : ''; ?>">
-                            <i class='bx bx-cog nav_icon'></i>
-                            <span class="nav_name">Settings</span>
-                        </a>
                     <?php
                     } else if ($_SESSION['user_type'] == 'student') {
                     ?>
