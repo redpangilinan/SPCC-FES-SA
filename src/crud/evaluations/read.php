@@ -1,5 +1,6 @@
 <?php
 require "../../../config/connection.php";
+include "../../helpers/get_legends_rating.php";
 
 $input = $_POST['input'];
 $schoolYear = $_POST['schoolYear'];
@@ -48,7 +49,17 @@ if (!empty($result)) {
             <td><?php echo $row["school_year"] ?></td>
             <td><?php echo $row["semester"] ?></td>
             <td><?php echo $row["responses"] ?></td>
-            <td><?php echo $row["average_rating"] ? $row["average_rating"] : 'N/A'; ?></td>
+            <td>
+                <?php
+                $average_rating = isset($row["average_rating"]) ? $row["average_rating"] : null;
+                if ($average_rating !== null) {
+                    $legend = getRatingLegend($average_rating);
+                    echo $average_rating . ' - ' . $legend;
+                } else {
+                    echo 'N/A';
+                }
+                ?>
+            </td>
             <td>
                 <div class="btn-group" role="group" aria-label="modify">
                     <button data-id="<?php echo $row["evaluation_id"] ?>" class="view-data btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#responsesModal"><i class="fas fa-list"></i></button>
