@@ -87,7 +87,7 @@ const importCsv = (formData) => {
             } else if (data == "unsupported_file") {
                 addBtnEnable();
                 console.log(data);
-                customAlert("error", "Unsupported File!", "Your file type is unsupported! Please upload a valid CSV file.");
+                customAlert("error", "Unsupported File!", "Your file type is unsupported! The CSV column headers should be the following: 'Faculty Name, Subject, School Year, Semester, Permit");
             } else if (data == "invalid_format") {
                 addBtnEnable();
                 console.log(data);
