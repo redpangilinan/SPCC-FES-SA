@@ -75,7 +75,7 @@ authorize("admin");
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="responsesModalLabel">Responses</h1>
+                    <h1 class="modal-title fs-5" id="responsesModalLabel">Evaluation Report</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -107,7 +107,7 @@ authorize("admin");
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="reportModalLabel">Response Details</h1>
+                    <h1 class="modal-title fs-5" id="reportModalLabel">Evaluation Report</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="reportBody"></div>
