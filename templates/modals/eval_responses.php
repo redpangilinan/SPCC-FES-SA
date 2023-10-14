@@ -2,16 +2,25 @@
 require "../../config/connection.php";
 
 $primary_id = $_POST['primary_id'];
+$filteredWordsJson = file_get_contents('../filtered_words.json');
+$filteredWordsArray = json_decode($filteredWordsJson, true);
+
+$filteredWords = $filteredWordsArray['blocked_words'];
 $sql = "SELECT report_id, rating, comment, sentiment FROM tb_reports WHERE evaluation_id = $primary_id ORDER BY rating DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($result)) {
-    foreach ($result as $row) { ?>
+    foreach ($result as $row) {
+        $filteredComment = $row["comment"];
+        foreach ($filteredWords as $word) {
+            $filteredComment = str_ireplace($word, '****', $filteredComment);
+        }
+?>
         <tr>
             <td><button data-id="<?php echo $row["report_id"] ?>" class="view-report btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#reportModal"><?php echo $row["rating"] ?></button></td>
-            <td><?php echo $row["comment"] ?></td>
+            <td><?php echo $filteredComment ?></td>
             <td><?php echo $row["sentiment"] ?></td>
         </tr>
 <?php

@@ -2,6 +2,10 @@
 require "../../config/connection.php";
 
 $primary_id = $_POST['primary_id'];
+$filteredWordsJson = file_get_contents('../filtered_words.json');
+$filteredWordsArray = json_decode($filteredWordsJson, true);
+
+$filteredWords = $filteredWordsArray['blocked_words'];
 $sql = "SELECT rating, comment, responses, sentiment FROM tb_reports WHERE report_id = $primary_id";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -11,6 +15,10 @@ $categories = array();
 $ratings = array();
 
 foreach ($result as $row) {
+    $filteredComment = $row["comment"];
+        foreach ($filteredWords as $word) {
+            $filteredComment = str_ireplace($word, '****', $filteredComment);
+        }
     $responses = json_decode($row['responses'], true);
     $total_rating = $row['rating'];
     $comment = $row['comment'];
@@ -43,7 +51,7 @@ echo '
         <th>Sentiment</th>
     </thead>';
 echo '<tbody>';
-echo '<tr><td>' . $comment . '</td><td>' . $sentiment . '</td><tr>';
+echo '<tr><td>' . $filteredComment . '</td><td>' . $sentiment . '</td><tr>';
 echo '</tbody>';
 echo '</table>';
 
