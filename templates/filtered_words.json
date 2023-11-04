@@ -1,24 +1,5 @@
+{% comment %} Fill this with profanity words {% endcomment %}
+
 {
-  "blocked_words": [
-    "bobo",
-    "tanga",
-    "puta",
-    "gago",
-    "tarantado",
-    "tangina",
-    "putangina",
-    "hayop",
-    "idiot",
-    "stupid",
-    "bitch",
-    "fuck",
-    "shit",
-    "nigga",
-    "sex",
-    "cunt",
-    "bullshit",
-    "motherfucker",
-    "slut",
-    "damn"
-  ]
+  "blocked_words": ["dumb", "stupid"]
 }
