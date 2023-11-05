@@ -14,8 +14,19 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!empty($result)) {
     foreach ($result as $row) {
         $filteredComment = $row["comment"];
+        $lowerCaseFilteredComment = strtolower($filteredComment);
+
         foreach ($filteredWords as $word) {
-            $filteredComment = str_ireplace($word, '****', $filteredComment);
+            $lowerCaseWord = strtolower($word);
+            if (stripos($lowerCaseFilteredComment, $lowerCaseWord) !== false) {
+                $filteredComment = preg_replace_callback(
+                    '/\b' . preg_quote($word, '/') . '\b/i',
+                    function ($match) {
+                        return str_repeat('*', strlen($match[0]));
+                    },
+                    $filteredComment
+                );
+            }
         }
 ?>
         <tr>
