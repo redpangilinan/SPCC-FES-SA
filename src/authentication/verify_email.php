@@ -1,6 +1,11 @@
 <?php
 require "../../config/connection.php";
 
+// Get email from root config
+$config_content = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/config.json");
+$config = json_decode($config_content, true);
+$sender_email = $config['email'];
+
 $verify_email = $_POST["verify_email"];
 $verification_code = substr(bin2hex(random_bytes(5)), 0, 10);
 
@@ -16,8 +21,8 @@ if (!$user) {
         $to = $verify_email;
         $subject = "Verification sent!";
         $message = "This is your verification code: $verification_code";
-        $headers = "From: redpangilinan715@gmail.com" . "\r\n" .
-            "Reply-To: redpangilinan715@gmail.com" . "\r\n" .
+        $headers = "From: $sender_email" . "\r\n" .
+            "Reply-To: $sender_email" . "\r\n" .
             "X-Mailer: PHP/" . phpversion();
 
         if (mail($to, $subject, $message, $headers)) {
